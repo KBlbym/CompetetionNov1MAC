@@ -243,10 +243,10 @@ function updateBackgroundImage(images) {
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position:center center;
-        -webkit-background-size: 100% 100%;
-        -moz-background-size: 100% 100%;
-        -o-background-size: 100% 100%;
-        background-size: 100% 100%;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }`, 2);
     } else {
