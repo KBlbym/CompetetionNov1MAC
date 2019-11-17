@@ -238,15 +238,15 @@ function updateBackgroundImage(images) {
         }
         styleSheetList.insertRule(`body
         {background-color: #999;
-            height:100vh;
+        height:100vh;
         background-image: url(${images[0].urls.regular});
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position:center center;
-        -webkit-background-size: 100%;
-        -moz-background-size: 100%;
-        -o-background-size: 100%;
-        background-size: 100%;
+        -webkit-background-size: 100% 100%;
+        -moz-background-size: 100% 100%;
+        -o-background-size: 100% 100%;
+        background-size: 100% 100%;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }`, 2);
     } else {
@@ -270,6 +270,7 @@ function updateBackgroundImage(images) {
         }
         styleSheetList.insertRule(`body
         {background-color: #999;
+            height:100vh;
             animation: bgfade 50s infinite;
             animation-timing-function: ease, step-start, cubic-bezier(0.7, 0.7, 1.0, 0.9);
             -webkit-background-size: cover;
