@@ -201,12 +201,13 @@ async function GetCityImage(url){
                 //but I prefer but i prefer give default image to background.
                 //I think is the best way. What do you think?
                 //throw response if we what throw an exception error;
-                updateBackgroundImage("https://images4.alphacoders.com/386/thumb-1920-38616.jpg");
+
+                //adding a class to body classList
+                document.body.classList.add("defaultImg");
             }
         } catch (error) {
             //if there is any exption error 
             alert("ERROR: " + error.message);
-         
         }
     }
 function updateBackgroundImage(images) {
@@ -229,58 +230,47 @@ function updateBackgroundImage(images) {
     /*When we add a body with an background-image, next time we search for
     a city that has one image, we remove a body style */
     if (images.length <= 1) {
-        //for loop to check if there is any body CSSrule, if is exist o remove it
-        //and we insert new one.
+        //for loop to check if there is any body CSSrule and any CSSKeyframes names bgfade,
+        // if is exist  remove it and we insert new one.
         for (let i = 0; i < rules.length; i++) {
             if (rules[i].selectorText == "body") {
                 styleSheetList.deleteRule(i);
             }
+            if (rules[i].name == "bgfade") {
+                styleSheetList.deleteRule(i);
+            }
         }
         styleSheetList.insertRule(`body
-        {background-color: #999;
-        height:100vh;
+        {
         background-image: url(${images[0].urls.regular});
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position:center center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }`, 2);
     } else {
         //Create a variable to sotre keyframes
         //this is to make multiples images to change it every x time
         //maybe is not the beste way, but i tray something different. you tell me is good o not.
-        
+        for (let i = 0; i < rules.length; i++) {
+            if (rules[i].selectorText == "body") {
+                styleSheetList.deleteRule(i);
+            }
+            if (rules[i].name == "bgfade") {
+                styleSheetList.deleteRule(i);
+            }
+        }
+
         let keyframes =`@keyframes bgfade {`;
         let num = 100/(images.length-1);
+
         for (let i = 0, j =0; i < images.length && j <=100; i++,j+=num) {
-            //keyframes = array[i];
             keyframes +=  `\n${j}% {background-image: url(${images[i].urls.regular});}\n`
         }
         keyframes += `}`;
 
         styleSheetList.insertRule(keyframes,styleSheetList.cssRules.length);
-        for (let i = 0; i < rules.length; i++) {
-            if (rules[i].selectorText == "body") {
-                styleSheetList.deleteRule(i);
-            }
-        }
+        debugger;
         styleSheetList.insertRule(`body
-        {background-color: #999;
-            height:100vh;
+        {
             animation: bgfade 50s infinite;
             animation-timing-function: ease, step-start, cubic-bezier(0.7, 0.7, 1.0, 0.9);
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position:center center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }`, 2);
     }
  }

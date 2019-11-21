@@ -1,6 +1,23 @@
 /*I removed the body because I am adding it from javascript*/
 /*Look at lines 235 and 258*/
 
+/*I have put some changes*/
+/*set a new classes to body and a default Image if theres none image to add*/
+
+.wrapper{
+    background-color: #999;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:center center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.defaultImg{
+    background-image: url(https://images4.alphacoders.com/386/thumb-1920-38616.jpg);
+}
 * {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
